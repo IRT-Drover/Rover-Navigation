@@ -27,8 +27,8 @@ if not connection_string:
 print('Connecting to vehicle on: %s' % connection_string)
 vehicle = connect(connection_string, wait_ready=True)
 
-# Function to arm and then takeoff to a user specified altitude
-def arm_and_takeoff(aTargetAltitude):
+# Function to arm
+def arm():
 
   print("Basic pre-arm checks")
   # Don't let the user try to arm until autopilot is ready
@@ -45,6 +45,8 @@ def arm_and_takeoff(aTargetAltitude):
     print(" Waiting for arming...")
     time.sleep(1)
 
+  # THIS SECTION NOT RELEVANT TO ROVER (takeoff and altitude check only make sense for copter)
+    
   # print("Taking off!")
   # vehicle.simple_takeoff(aTargetAltitude) # Take off to target altitude
 
@@ -58,14 +60,14 @@ def arm_and_takeoff(aTargetAltitude):
   #   time.sleep(1)
 
 # Initialize the takeoff sequence to 2m
-arm_and_takeoff(0)
-# print("Take off complete")
+arm()
+print("Arming complete")
 
-vehicle.airspeed = 7
+vehicle.groundspeed = 7
 
 print("go to waypoint:")
 
-wp3 = LocationGlobalRelative(40.6183319,-74.5688814, 0)   # <- the 3rd argument is the altitude in meters.
+wp3 = LocationGlobalRelative(40.6183319,-74.5688814, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
 vehicle.simple_goto(wp3)
 
 
