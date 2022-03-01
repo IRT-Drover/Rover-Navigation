@@ -2,8 +2,8 @@ from dronekit import connect, VehicleMode, LocationGlobalRelative
 from pymavlink import mavutil
 import time
 
-for key, value in vehicle.parameters.iteritems():
-    print " Key:%s Value:%s" % (key,value)
+# for key, value in vehicle.parameters.iteritems():
+#     print " Key:%s Value:%s" % (key,value)
 
 
 import argparse
