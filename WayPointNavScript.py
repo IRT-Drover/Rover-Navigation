@@ -67,7 +67,7 @@ vehicle.groundspeed = 7
 
 print("go to waypoint:")
 
-wp3 = LocationGlobalRelative(40.618665,-74.5688814, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
+wp3 = LocationGlobalRelative(40.618665,-74.567323, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
 vehicle.simple_goto(wp3)
 
 
@@ -95,7 +95,7 @@ vehicle.simple_goto(wp3)
 # Hover for 10 seconds
 time.sleep(10)
 
-wp3 = LocationGlobalRelative(40.618665,-74.5688814, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
+wp3 = LocationGlobalRelative(40.618665,-74.567323, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
 vehicle.simple_goto(wp3)
 
 
