@@ -46,7 +46,7 @@ def arm():
     time.sleep(1)
 
   # THIS SECTION NOT RELEVANT TO ROVER (takeoff and altitude check only make sense for copter)
-    
+
   # print("Taking off!")
   # vehicle.simple_takeoff(aTargetAltitude) # Take off to target altitude
 
@@ -70,20 +70,21 @@ print("go to waypoint:")
 wp3 = LocationGlobalRelative(40.62078446804657, -74.56871825506587, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
 vehicle.simple_goto(wp3)
 
-
 # Hover for 10 seconds
 time.sleep(10)
+
+print("go to waypoint:")
 
 wp3 = LocationGlobalRelative(40.62022610736585, -74.56885431861726, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
 vehicle.simple_goto(wp3)
 
-
 # Hover for 10 seconds
 time.sleep(10)
 
+print("go to waypoint:")
+
 wp3 = LocationGlobalRelative(40.61989022792014, -74.56897319786732, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
 vehicle.simple_goto(wp3)
-
 
 # Hover for 10 seconds
 time.sleep(10)
