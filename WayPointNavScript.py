@@ -85,8 +85,8 @@ wp3 = LocationGlobalRelative(40.619904501564356, -74.56900268233817, 0)   # <- t
 vehicle.simple_goto(wp3)
 
 
-# # Hover for 10 seconds
-# time.sleep(10)
+# Hover for 10 seconds
+time.sleep(10)
 
 # wp3 = LocationGlobalRelative(40.618609,-74.566750, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
 # vehicle.simple_goto(wp3)
