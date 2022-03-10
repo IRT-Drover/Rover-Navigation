@@ -1,6 +1,8 @@
 from dronekit import connect, VehicleMode, LocationGlobalRelative
 from pymavlink import mavutil
 import time
+from pygeodesy.ellipsoidalVincenty import LatLon
+from pygeodesy import Datums
 
 import argparse
 parser = argparse.ArgumentParser(description='Commands vehicle using vehicle.simple_goto.')
@@ -55,53 +57,91 @@ def arm():
   #     break
   #   time.sleep(1)
 
+# Moves the vehicle to a position latitude, longitude, altitude.
+# The method takes a function pointer argument with a single `dronekit.lib.LocationGlobal` parameter for
+# the target position. This allows it to be called with different position-setting commands.
+# By default it uses the standard method: dronekit.lib.Vehicle.simple_goto().
+# It uses pygeodesy methods to calculate distance between coordinates.
+# The method reports the distance to target every two seconds.
+#
+# note: simple_goto(), by itself, can be interrupted by a later command,
+# and does not provide any functionality to indicate when the vehicle has reached its destination.
+def goto(latitude, longitude, altitude, gotoFunction=vehicle.simple_goto):
+    # currentLocation=vehicle.location.global_relative_frame
+    currentCoord = LatLon(vehicle.location.global_relative_frame.lat, vehicle.location.global_relative_frame.lon, datum=Datums.NAD83)
+
+    targetCoord = LatLon(latitude, longitude, datum=Datums.NAD83)
+    targetDistance = currentCoord.distanceTo(targetloc)
+
+    targetLocation = LocationGlobalRelative(latitude, longitude, altitude)
+    gotoFunction(targetLocation)
+
+    #print "DEBUG: targetCoord: %s" % targetCoord
+    #print "DEBUG: targetCoord: %s" % targetDistance
+
+    while vehicle.mode.name == "GUIDED": # Stop action if we are no longer in guided mode.
+        # remainingDistance=get_distance_metres(vehicle.location.global_relative_frame, targetLocation)
+        currentCoord = LatLon(vehicle.location.global_relative_frame.lat, vehicle.location.global_relative_frame.lon, datum=Datums.NAD83)
+        remainingDistance = currentCoord.distanceTo(targetCoord)
+        print "Distance to target: " + remainingDistance
+        if remainingDistance <= targetDistance*0.01: #Just below target, in case of undershoot. # MAYBE WILL CHANGE TO A CONSTANT
+            print "Reached target"
+            break;
+        time.sleep(2)
+
 # Initialize the takeoff sequence to 2m
 arm()
 print("Arming complete")
 
 vehicle.groundspeed = 5
+print("Set ground speed to " + vehicle.groundspeed)
 
-print("go to waypoint:")
+print("Go to waypoint:")
 
-wp3 = LocationGlobalRelative(40.61925811343867, -74.57010269091948, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
-vehicle.simple_goto(wp3)
-
-# Hover for 10 seconds
-time.sleep(5)
-
-print("go to waypoint:")
-
-wp3 = LocationGlobalRelative(40.61886183542662, -74.57025030372597, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
-vehicle.simple_goto(wp3)
+#wp3 = LocationGlobalRelative(40.61925811343867, -74.57010269091948, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
+#vehicle.simple_goto(wp3)
+goto(40.61925811343867, -74.57010269091948, 0)
 
 # Hover for 10 seconds
 time.sleep(5)
 
-print("go to waypoint:")
+print("Go to waypoint:")
 
-wp3 = LocationGlobalRelative(40.618716929227936, -74.56952629885824, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
-vehicle.simple_goto(wp3)
-
-# Hover for 10 seconds
-time.sleep(5)
-
-print("go to waypoint:")
-
-wp3 = LocationGlobalRelative(40.61897960269949, -74.56946444933803, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
-vehicle.simple_goto(wp3)
+# wp3 = LocationGlobalRelative(40.61886183542662, -74.57025030372597, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
+# vehicle.simple_goto(wp3)
+goto(40.61886183542662, -74.57025030372597, 0)
 
 # Hover for 10 seconds
 time.sleep(5)
 
-print("go to waypoint:")
+print("Go to waypoint:")
 
-wp3 = LocationGlobalRelative(40.61925811343867, -74.57010269091948, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
-vehicle.simple_goto(wp3)
+# wp3 = LocationGlobalRelative(40.618716929227936, -74.56952629885824, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
+# vehicle.simple_goto(wp3)
+goto(40.618716929227936, -74.56952629885824, 0)
 
 # Hover for 10 seconds
 time.sleep(5)
 
-print("return to starting point")
+print("Go to waypoint:")
+
+# wp3 = LocationGlobalRelative(40.61897960269949, -74.56946444933803, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
+# vehicle.simple_goto(wp3)
+goto(40.61897960269949, -74.56946444933803, 0)
+
+# Hover for 10 seconds
+time.sleep(5)
+
+print("Go to waypoint:")
+
+# wp3 = LocationGlobalRelative(40.61925811343867, -74.57010269091948, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
+# vehicle.simple_goto(wp3)
+goto(40.61925811343867, -74.57010269091948, 0)
+
+# Hover for 10 seconds
+time.sleep(5)
+
+print("Return to starting point")
 vehicle.mode = VehicleMode("RTL")
 # Close vehicle object
 vehicle.close()
