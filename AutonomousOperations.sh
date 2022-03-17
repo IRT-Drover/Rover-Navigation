@@ -7,6 +7,9 @@ echo
 # ls -l filename.sh
 # chmod 755 filename.sh
 
+# for pushing files with commandline git and not asking for username and password everytime
+# git config credential.helper store
+
 VEHICLE='rover'
 FLIGHTSCRIPT='FieldNavScript.py'
 #FLIGHTSCRIPT='FieldNavScriptCopy.py'
