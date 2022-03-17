@@ -17,7 +17,7 @@ fi
 echo
 echo 'Connect Mission Planner before preceding'
 echo
-echo 'READY TO EXECUTE TAKEOFF SCRIPT:' $FLIGHTSCRIPT
+echo 'READY TO EXECUTE TAKEOFF SCRIPT...' $FLIGHTSCRIPT
 echo
 echo "Type 'takeoff' when ready to arm and takeoff or 'q' to cancel..."
 echo "Then, arm vehicle in mission planner or type 'arm throttle force' in the mavproxysetup window..."

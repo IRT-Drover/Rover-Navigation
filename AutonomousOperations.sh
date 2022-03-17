@@ -7,9 +7,6 @@ echo
 # ls -l filename.sh
 # chmod 755 filename.sh
 
-# for pushing files with commandline git and not asking for username and password everytime
-# git config credential.helper store
-
 VEHICLE='rover'
 FLIGHTSCRIPT='FieldNavScript.py'
 #FLIGHTSCRIPT='FieldNavScriptCopy.py'
@@ -29,8 +26,8 @@ fi
 echo 'Setting up mavproxy...'
 echo 'Setting up launch...'
 # On Raspberry pi (linux)
-lxterminal --command "cd /home/pi/Desktop && ./mavproxysetup.sh "$VEHICLE &
-lxterminal --command "cd /home/pi/Desktop && ./takeoff.sh "$FLIGHTSCRIPT &
+lxterminal --command "cd /home/pi/Rover-Navigation && ./mavproxysetup.sh "$VEHICLE &
+lxterminal --command "cd /home/pi/Rover-Navigation && ./takeoff.sh "$FLIGHTSCRIPT &
 
 #On Mac
 # osascript -e 'tell app "Terminal"
