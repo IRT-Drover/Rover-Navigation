@@ -26,8 +26,8 @@ fi
 echo 'Setting up mavproxy...'
 echo 'Setting up launch...'
 # On Raspberry pi (linux)
-lxterminal --command "cd /home/pi/Desktop && ./mavproxysetup.sh "$VEHICLE
-lxterminal --command "cd /home/pi/Desktop && ./takeoff.sh "$FLIGHTSCRIPT
+lxterminal --command "cd /home/pi/Desktop && ./mavproxysetup.sh "$VEHICLE &
+lxterminal --command "cd /home/pi/Desktop && ./takeoff.sh "$FLIGHTSCRIPT &
 
 #On Mac
 # osascript -e 'tell app "Terminal"
