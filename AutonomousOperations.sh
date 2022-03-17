@@ -9,7 +9,7 @@ echo
 
 VEHICLE='rover'
 FLIGHTSCRIPT='FieldNavScript.py'
-#FLIGHTSCRIPT='FieldNavScriptCopy.py'
+#FLIGHTSCRIPT='FieldNavScript copy.py'
 
 prompt_err() {
   echo -e "COMMAND FAILED"
