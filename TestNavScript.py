@@ -86,7 +86,7 @@ arm()
 print("Arming complete")
 
 vehicle.groundspeed = 5
-print("Ground speed: " + vehicle.groundspeed)
+print("Ground speed: " + str(vehicle.groundspeed))
 
 print("go to waypoint:")
 
