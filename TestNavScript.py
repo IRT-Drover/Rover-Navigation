@@ -68,8 +68,9 @@ def goto(latitude, longitude, altitude, gotoFunction=vehicle.simple_goto):
     targetLocation = LocationGlobalRelative(latitude, longitude, altitude)
     gotoFunction(targetLocation)
 
-    #print "DEBUG: targetCoord: %s" % targetCoord
-    #print "DEBUG: targetCoord: %s" % targetDistance
+    #print("DEBUG: targetCoord: %s" % targetCoord)
+    #print("DEBUG: targetCoord: %s" % targetDistance)
+    print(vehicle.mode.name)
 
     while vehicle.mode.name == "GUIDED": # Stop action if we are no longer in guided mode.
         # remainingDistance=get_distance_metres(vehicle.location.global_relative_frame, targetLocation)
@@ -85,7 +86,7 @@ def goto(latitude, longitude, altitude, gotoFunction=vehicle.simple_goto):
 arm()
 print("Arming complete")
 
-vehicle.groundspeed = 5
+vehicle.groundspeed = 1.5
 print("Ground speed: " + str(vehicle.groundspeed))
 
 print("go to waypoint:")
