@@ -1,7 +1,6 @@
 #!/bin/bash
 
 FLIGHTSCRIPT=$1
-cd /home/pi/Desktop
 
 prompt_err() {
   echo -e "COMMAND FAILED"
