@@ -1,5 +1,7 @@
 from dronekit import connect, VehicleMode, LocationGlobalRelative
 from pymavlink import mavutil
+from pygeodesy.ellipsoidalVincenty import LatLon
+from pygeodesy import Datums
 import time
 
 import argparse
@@ -55,24 +57,42 @@ def arm():
   #     break
   #   time.sleep(1)
 
+def goto(latitude, longitude, altitude, gotoFunction=vehicle.simple_goto):
+    vehicle.mode = VehicleMode("GUIDED")
+    # currentLocation=vehicle.location.global_relative_frame
+    currentCoord = LatLon(vehicle.location.global_relative_frame.lat, vehicle.location.global_relative_frame.lon, datum=Datums.NAD83)
+
+    targetCoord = LatLon(latitude, longitude, datum=Datums.NAD83)
+    targetDistance = currentCoord.distanceTo(targetCoord)
+
+    targetLocation = LocationGlobalRelative(latitude, longitude, altitude)
+    gotoFunction(targetLocation)
+
+    #print "DEBUG: targetCoord: %s" % targetCoord
+    #print "DEBUG: targetCoord: %s" % targetDistance
+
+    while vehicle.mode.name == "GUIDED": # Stop action if we are no longer in guided mode.
+        # remainingDistance=get_distance_metres(vehicle.location.global_relative_frame, targetLocation)
+        currentCoord = LatLon(vehicle.location.global_relative_frame.lat, vehicle.location.global_relative_frame.lon, datum=Datums.NAD83)
+        remainingDistance = currentCoord.distanceTo(targetCoord)
+        print ("Distance to target: " + str(remainingDistance))
+        if remainingDistance <= targetDistance*0.3: #Just below target, in case of undershoot. # MAYBE WILL CHANGE TO A CONSTANT
+            print ("Reached target")
+            break
+        time.sleep(2)
+
 # Initialize the takeoff sequence to 2m
 arm()
 print("Arming complete")
 
 vehicle.groundspeed = 5
+print("Ground speed: " + vehicle.groundspeed)
 
 print("go to waypoint:")
 
-wp3 = LocationGlobalRelative(40.66899443143663, -74.47626378775324, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
-vehicle.simple_goto(wp3)
-
-
-# Hover for 5 seconds
-time.sleep(5)
-
-wp3 = LocationGlobalRelative(40.66925680648992, -74.47546998533205, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
-vehicle.simple_goto(wp3)
-
+# wp3 = LocationGlobalRelative(40.68134027435853, -74.48265755170037, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
+# vehicle.simple_goto(wp3)
+goto(40.68134027435853, -74.48265755170037, 0)
 
 # Hover for 10 seconds
 time.sleep(10)
