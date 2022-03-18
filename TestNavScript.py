@@ -77,7 +77,7 @@ def goto(latitude, longitude, altitude, gotoFunction=vehicle.simple_goto):
         currentCoord = LatLon(vehicle.location.global_relative_frame.lat, vehicle.location.global_relative_frame.lon, datum=Datums.NAD83)
         remainingDistance = currentCoord.distanceTo(targetCoord)
         print ("Distance to target: " + str(remainingDistance))
-        if remainingDistance <= targetDistance*0.3: #Just below target, in case of undershoot. # MAYBE WILL CHANGE TO A CONSTANT
+        if remainingDistance <= targetDistance*0.1: #Just below target, in case of undershoot. # MAYBE WILL CHANGE TO A CONSTANT
             print ("Reached target")
             break
         time.sleep(2)
