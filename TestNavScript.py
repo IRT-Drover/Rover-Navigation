@@ -77,7 +77,8 @@ def goto(latitude, longitude, altitude, gotoFunction=vehicle.simple_goto):
         currentCoord = LatLon(vehicle.location.global_relative_frame.lat, vehicle.location.global_relative_frame.lon, datum=Datums.NAD83)
         remainingDistance = currentCoord.distanceTo(targetCoord)
         print ("Distance to target: " + str(remainingDistance))
-        if remainingDistance <= targetDistance*0.1: #Just below target, in case of undershoot. # MAYBE WILL CHANGE TO A CONSTANT
+        print("Ground speed: " + str(vehicle.groundspeed))
+        if remainingDistance <= targetDistance*0.2: #Just below target, in case of undershoot. # MAYBE WILL CHANGE TO A CONSTANT
             print ("Reached target")
             break
         time.sleep(2)
@@ -86,8 +87,8 @@ def goto(latitude, longitude, altitude, gotoFunction=vehicle.simple_goto):
 arm()
 print("Arming complete")
 
+print("Set ground speed: " + 1.5)
 vehicle.groundspeed = 1.5
-print("Ground speed: " + str(vehicle.groundspeed))
 
 print("go to waypoint:")
 
@@ -99,6 +100,8 @@ goto(40.68134027435853, -74.48265755170037, 0)
 time.sleep(10)
 
 print("return to starting point")
+# vehicle.groundspeed = 1.5 # idk if this does anything
 vehicle.mode = VehicleMode("RTL")
+# vehicle.groundspeed = 1.5 # idk if this does anything
 # Close vehicle object
 vehicle.close()
