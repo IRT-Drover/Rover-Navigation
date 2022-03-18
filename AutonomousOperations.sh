@@ -8,7 +8,7 @@ echo
 # chmod 755 filename.sh
 
 VEHICLE='rover'
-FLIGHTSCRIPT='FieldNavScript.py'
+FLIGHTSCRIPT='TestNavScript.py'
 #FLIGHTSCRIPT='FieldNavScriptCopy.py'
 
 prompt_err() {
