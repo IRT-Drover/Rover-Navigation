@@ -87,7 +87,7 @@ def goto(latitude, longitude, altitude, gotoFunction=vehicle.simple_goto):
 arm()
 print("Arming complete")
 
-print("Set ground speed: " + 1.5)
+print("Set ground speed: " + str(1.5))
 vehicle.groundspeed = 1.5
 
 print("go to waypoint:")
