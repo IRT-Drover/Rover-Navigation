@@ -88,7 +88,7 @@ arm()
 print("Arming complete")
 
 print("Set ground speed: " + str(1))
-vehicle.groundspeed = 1
+vehicle.groundspeed = 3
 
 print("go to waypoint:")
 
@@ -97,7 +97,7 @@ print("go to waypoint:")
 goto(40.67056161850959, -74.47503293046965, 0)
 
 # Hover for 10 seconds
-time.sleep(10)
+time.sleep(5)
 
 print("return to starting point")
 # vehicle.groundspeed = 1.5 # idk if this does anything
