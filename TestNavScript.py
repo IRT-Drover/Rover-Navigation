@@ -95,7 +95,10 @@ print("go to waypoint:")
 # wp3 = LocationGlobalRelative(40.68134027435853, -74.48265755170037, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
 # vehicle.simple_goto(wp3)
 # goto(40.67056161850959, -74.47503293046965, 0)
-goto(40.670766730857615, -74.47515365803102, 0)
+goto(40.670515834417216, -74.47471420970764, 0)
+goto(40.670818008846034, -74.47490254470338, 0)
+goto(40.67066234340221, -74.47546513513936, 0)
+goto(40.6703363604719, -74.47521885091416, 0)
 
 # Hover for 10 seconds
 time.sleep(5)
