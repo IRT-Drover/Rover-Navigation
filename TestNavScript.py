@@ -88,13 +88,14 @@ arm()
 print("Arming complete")
 
 print("Set ground speed: " + str(1))
-vehicle.groundspeed = 3
+vehicle.groundspeed = 5
 
 print("go to waypoint:")
 
 # wp3 = LocationGlobalRelative(40.68134027435853, -74.48265755170037, 0)   # <- the 3rd argument is the altitude in meters. (set to 0 for rover)
 # vehicle.simple_goto(wp3)
-goto(40.67056161850959, -74.47503293046965, 0)
+# goto(40.67056161850959, -74.47503293046965, 0)
+goto(40.670766730857615, -74.47515365803102, 0)
 
 # Hover for 10 seconds
 time.sleep(5)
