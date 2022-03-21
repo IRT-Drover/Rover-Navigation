@@ -22,7 +22,8 @@ echo '||>>>RUNNING MAVPROXY<<<||'
 if [ $VEHICLE == 'drone' ]; then
   status 'mavproxy.py --master=/dev/serial0 --baudrate 921600 --out udp:192.168.18.131:14550 --out udp:127.0.0.1:14551 --aircraft MyCopter'
 elif [ $VEHICLE == 'rover' ]; then
-  status 'mavproxy.py --master=/dev/serial0 --baudrate 57600 --out udp:192.168.1.180:14550 --out udp:127.0.0.1:14551 --aircraft MyRover'
+  status 'mavproxy.py --master=/dev/serial0 --baudrate 57600 --out udp:172.20.10.10:14550 --out udp:127.0.0.1:14551 --aircraft MyRover' # dad's hotspot
+  # status 'mavproxy.py --master=/dev/serial0 --baudrate 57600 --out udp:192.168.1.180:14550 --out udp:127.0.0.1:14551 --aircraft MyRover' # at home
   # status 'mavproxy.py --master=/dev/serial0 --baudrate 57600 --out udp:192.168.18.131:14550 --out udp:127.0.0.1:14551 --aircraft MyRover'
 elif [ $VEHICLE == 'simulation' ]; then
   # cd \Python27\Scripts
