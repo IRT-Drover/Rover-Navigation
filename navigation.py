@@ -107,7 +107,7 @@ print("Set ground speed to " + str(5))
 vehicle.groundspeed = 5
 
 # Start journey
-navigation('2022-06-05 Satellite Image Testing/GPSDATAPACKAGE.npy', 'Picture 1')
+navigation('2022-05-013 Satellite Image Testing/GPSDATAPACKAGE.npy', 'Picture 1')
 
 # print("Go to waypoint:")
 
