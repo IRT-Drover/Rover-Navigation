@@ -82,14 +82,15 @@ def goto(latitude, longitude, altitude, gotoFunction=vehicle.simple_goto):
     #print "DEBUG: targetCoord: %s" % targetDistance
 
     while vehicle.mode.name == "GUIDED": # Stop action if we are no longer in guided mode.
+        print("\nMODE: " + vehicle.mode.name)
         # remainingDistance=get_distance_metres(vehicle.location.global_relative_frame, targetLocation)
         currentCoord = LatLon(vehicle.location.global_relative_frame.lat, vehicle.location.global_relative_frame.lon, datum=Datums.NAD83)
         remainingDistance = currentCoord.distanceTo(targetCoord)
         print ("Distance to target: " + str(remainingDistance))
-        if remainingDistance <= targetDistance*0.3: #Just below target, in case of undershoot. # MAYBE WILL CHANGE TO A CONSTANT
+        if remainingDistance <= 5: # targetDistance*0.3: #Just below target, in case of undershoot. # MAYBE WILL CHANGE TO A CONSTANT
             print ("Reached target")
             break
-        time.sleep(2)
+        time.sleep(0.5)
 
 def navigation(GPSDATAFILE, picture_selec):
     GPSPATHS = np.load(GPSDATAFILE, allow_pickle='TRUE').item()
