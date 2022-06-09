@@ -102,7 +102,7 @@ def navigation(GPSDATAFILE, picture_selec):
 arm()
 print("Arming complete")
 
-print("Set ground speed to " + 5)
+print("Set ground speed to " + str(5))
 vehicle.groundspeed = 5
 
 # Start journey
