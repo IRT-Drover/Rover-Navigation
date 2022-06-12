@@ -95,9 +95,9 @@ def goto(latitude, longitude, altitude, gotoFunction=vehicle.simple_goto):
 def navigation(GPSDATAFILE, picture_selec):
     GPSPATHS = np.load(GPSDATAFILE, allow_pickle='TRUE').item()
     PATH = GPSPATHS[picture_selec]
-    for coord in PATH:
-      print('Go to waypoint: ' + str(coord[0]) + " , " + str(coord[1]))
-      goto(coord[0], coord[1], 0)
+    for i in range(0, len(PATH)):
+      print('Go to waypoint #' + str(i+1) + ': ' + str(PATH[i][0]) + " , " + str(PATH[i][1]))
+      goto(PATH[i][0], PATH[i][1], 0)
     print("Final Destination Reached. Journey Complete")
 
 arm()
