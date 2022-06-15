@@ -93,11 +93,11 @@ def navigation(GPSDATAFILE, picture_selec):
 arm()
 print("Arming complete")
 
-print("Set ground speed to " + str(5))
-vehicle.groundspeed = 5
+print("Set ground speed to " + str(3))
+vehicle.groundspeed = 3
 
 # Start journey
-navigation('2022-05-013 Satellite Image Testing/GPSDATAPACKAGE.npy', 'Picture 1')
+navigation('2022-06-14 Satellite Image Testing/GPSDATAPACKAGE.npy', 'Picture 1')
 
 # print("Go to waypoint:")
 
