@@ -3,7 +3,7 @@ from pymavlink import mavutil
 import time
 from pygeodesy.ellipsoidalVincenty import LatLon
 from pygeodesy import Datums
-import numpy as np
+import pickle
 
 import argparse
 parser = argparse.ArgumentParser(description='Commands vehicle using vehicle.simple_goto.')
@@ -83,7 +83,8 @@ def goto(latitude, longitude, altitude, gotoFunction=vehicle.simple_goto):
 
 
 def navigation(GPSDATAFILE, picture_selec):
-    GPSPATHS = np.load(GPSDATAFILE, allow_pickle='TRUE').item()
+    with open(GPSDATAFILE, 'rb') as file:
+      GPSPATHS = pickle.load(file)
     PATH = GPSPATHS[picture_selec]
     for i in range(0, len(PATH)):
       print('Go to waypoint #' + str(i+1) + ': ' + str(PATH[i][0]) + " , " + str(PATH[i][1]))
@@ -97,7 +98,7 @@ print("Set ground speed to " + str(3))
 vehicle.groundspeed = 3
 
 # Start journey
-navigation('2022-06-14 Satellite Image Testing/GPSDATAPACKAGE.npy', 'Picture 1')
+navigation('2022-06-14 Satellite Image Testing/GPSDATAPACKAGE.pickle', 'Picture 1')
 
 # print("Go to waypoint:")
 
