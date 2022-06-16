@@ -104,8 +104,8 @@ def navigation(GPSDATAFILE, picture_selec):
 arm()
 print("Arming complete")
 
-print("Set ground speed to " + str(3))
-vehicle.groundspeed = 3
+print("Set ground speed to " + str(1))
+vehicle.groundspeed = 1
 
 # Start journey
 navigation('2022-06-14 Satellite Image Testing/GPSDATAPACKAGE.pickle', 'Picture 1')
@@ -119,7 +119,7 @@ navigation('2022-06-14 Satellite Image Testing/GPSDATAPACKAGE.pickle', 'Picture 
 # Hover for 10 seconds
 time.sleep(5)
 
-print("Return to starting point")
-vehicle.mode = VehicleMode("RTL")
+# print("Return to starting point")
+# vehicle.mode = VehicleMode("RTL")
 # Close vehicle object
 vehicle.close()
